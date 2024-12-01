@@ -39,6 +39,17 @@ try{
 }
 })
 
+userSchema.methods.comparePassword =async function(canidatePassword){
+  try{
+    // Use bcrypt to compare the provided password with the hashed password
+    const isMatch = await bcrypt.compare(canidatePassword, this.password);
+    return isMatch;
+
+  }catch(err){
+    throw err;
+  }
+}
+
 const userModel = mongoose.model("User", userSchema);
 
 export default userModel;
