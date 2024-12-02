@@ -13,8 +13,8 @@ const localAuthMiddleware = passport.authenticate("local", { session: false })
 app.set("view engine", "ejs")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use("/api",localAuthMiddleware, userRouter);
+
 
 app.listen(PORT, () => {
   console.log(`server is running on : http://localhost:${PORT}/`);
