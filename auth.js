@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(async (USERNAME, password, done) => {
     }
 
   } catch (err) {
-    return done()
+    return done(err)
   }
 }))
 
