@@ -8,12 +8,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 dbConnect(process.env.MONGO_URI);
-app.use(passport.initialize())
-const localAuthMiddleware = passport.authenticate("local", { session: false })
+
 app.set("view engine", "ejs")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api",localAuthMiddleware, userRouter);
+app.use(passport.initialize())
+const localAuthMiddleware = passport.authenticate("local", { session: false })
+
+app.use("/api", localAuthMiddleware, userRouter);
 
 
 app.listen(PORT, () => {
